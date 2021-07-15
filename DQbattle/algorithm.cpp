@@ -3,6 +3,8 @@
 int damage;
 int defenseflag=0;
 int num_yakusou = 5;
+errno_t error;
+FILE* fp;
 struct c_data you, monster;
 
 void move(int i) {
@@ -83,9 +85,9 @@ void enemy() {
 
 void CSV2Array(const char* filename, int data[max][4]) {
 
-    FILE* fp;
+    
     char s[BUFFSIZE];
-    errno_t error;
+    
     char delim[] = ",";//デリミタ（複数渡せる）ここではカンマと空白
     char* ctx;
     char* ary[6];
@@ -154,3 +156,15 @@ void getdata() {
 
     CSV2Array(keyValue, data);
 }
+
+void outputfile() {
+    error = fopen_s(&fp, "playturn.csv", "w");
+    if (error != 0)
+        fprintf_s(stderr, "failed to open");
+    else {
+        fprintf_s(fp, "掛かったターン数：%d\n", playturn);
+        }
+        fclose(fp);
+        printf("ファイルに結果が出力されました\n");
+    }
+

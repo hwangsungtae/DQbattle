@@ -9,12 +9,14 @@ extern int data[max][4];
 extern int yourhp;
 extern int enemyhp;
 extern int damage;
+extern int playturn;
 void CSV2Array(const char* filename, int data[max][4]);
 void getGurrentDirectory(char* currentDirectory);
 void move(int i);
 void enemy();
 void hp();
 void getdata();
+void outputfile();
 
 typedef struct c_data {
 	int hp;

@@ -7,6 +7,7 @@
 int data[max][4];
 int yourhp;
 int enemyhp;
+int playturn = 0;
 
 int main()
 {
@@ -16,6 +17,8 @@ int main()
 	hp();
 
 	while (1) {
+		playturn++;
+		printf("ターン:%d\n", playturn);
 		printf("yourHP:%d\n", yourhp);
 		printf("enemyHP:%d\n", enemyhp);
 		int i;
@@ -30,11 +33,13 @@ int main()
 		enemy();
 
 		if (yourhp <= 0) {
-			printf("あなたは力尽きた");
-			return 0;
+			printf("あなたは力尽きた\n");
+			outputfile();
+			return 0;			
 		}
 		else if (enemyhp <= 0) {
-			printf("あなたは戦いに勝利した");
+			printf("あなたは戦いに勝利した\n");
+			outputfile();
 			return 0;
 		}
 	}
