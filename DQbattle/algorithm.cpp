@@ -1,16 +1,21 @@
 #include <stdio.h>
 #include "setting.h"
+int damage;
+int defenseflag=0;
 
 void move(int i) {
     if (i == 1) {
+        damage = data[0][1];
         Sleep(500);
-        printf("相手に%dのダメージ\n", data[1][1]);
+        printf("相手に%dのダメージ\n", damage);
         Sleep(500);
-        enemyhp -= data[1][1];
-
+        enemyhp -= damage;
     }
     else if (i == 2) {
-        int defenseflag = 1;
+        defenseflag = 1;
+        Sleep(500);
+        printf("守りを固めた\n");
+        Sleep(500);
 
     }
     else {
@@ -22,23 +27,56 @@ void enemy() {
     int moveflag;
     moveflag = (rand() % 3 + 1);
     if (moveflag == 1) {
-        Sleep(500);
-        printf("あなたに%dのダメージ\n", data[0][1]);
-        Sleep(500);
-        yourhp -= data[0][1];
 
+        if (defenseflag == 1) {
+            damage = data[1][1] - data[0][2];
+            Sleep(500);
+            printf("あなたに%dのダメージ\n", damage);
+            Sleep(500);
+            yourhp -= damage;
+            defenseflag = 0;
+        }
+        else {
+            damage = data[1][1];
+            Sleep(500);
+            printf("あなたに%dのダメージ\n", damage);
+            Sleep(500);
+            yourhp -= data[0][1];
+        }
     }
     else if (moveflag == 2) {
-        Sleep(500);
-        printf("あなたに%dのダメージ\n", data[0][1]);
-        Sleep(500);
-        yourhp -= data[0][1];
+        if (defenseflag == 1) {
+            damage = data[1][1] - data[0][2];
+            Sleep(500);
+            printf("あなたに%dのダメージ\n", damage);
+            Sleep(500);
+            yourhp -= damage;
+            defenseflag = 0;
+        }
+        else {
+            damage = data[1][1];
+            Sleep(500);
+            printf("あなたに%dのダメージ\n", damage);
+            Sleep(500);
+            yourhp -= data[0][1];
+        }
     }
     else {
-        Sleep(500);
-        printf("あなたに%dのダメージ\n", data[0][1]);
-        Sleep(500);
-        yourhp -= data[0][1];
+        if (defenseflag == 1) {
+            damage = data[1][1] - data[0][2];
+            Sleep(500);
+            printf("あなたに%dのダメージ\n", damage);
+            Sleep(500);
+            yourhp -= damage;
+            defenseflag = 0;
+        }
+        else {
+            damage = data[1][1];
+            Sleep(500);
+            printf("あなたに%dのダメージ\n", damage);
+            Sleep(500);
+            yourhp -= data[0][1];
+        }
     }
 }
 
