@@ -76,7 +76,7 @@ void enemy() {
         Sleep(500);
         printf("‚ ‚¢‚Ä‚Íƒ{[‚Á‚Æ‚µ‚Ä‚¢‚é\n");
         Sleep(500);
-
+        defenseflag = 0;
     }
 }
 
