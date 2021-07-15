@@ -16,4 +16,10 @@ void enemy();
 void hp();
 void getdata();
 
+typedef struct c_data {
+	int hp;
+	int attack;
+	int defense;
+};
+
 

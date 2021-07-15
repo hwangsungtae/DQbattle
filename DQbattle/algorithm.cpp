@@ -3,10 +3,11 @@
 int damage;
 int defenseflag=0;
 int num_yakusou = 5;
+struct c_data you, monster;
 
 void move(int i) {
     if (i == 1) {
-        damage = data[0][1];
+        damage = you.attack;
         Sleep(500);
         printf("相手に%dのダメージ\n", damage);
         Sleep(500);
@@ -39,7 +40,7 @@ void enemy() {
     if (moveflag == 1|| moveflag == 2 || moveflag == 3 ) {
 
         if (defenseflag == 1) {
-            damage = data[1][1] - data[0][2];
+            damage = monster.attack - you.attack;
             Sleep(500);
             printf("あなたに%dのダメージ\n", damage);
             Sleep(500);
@@ -47,7 +48,7 @@ void enemy() {
             defenseflag = 0;
         }
         else {
-            damage = data[1][1];
+            damage = monster.attack;
             Sleep(500);
             printf("あなたに%dのダメージ\n", damage);
             Sleep(500);
@@ -56,7 +57,7 @@ void enemy() {
     }
     else if (moveflag == 4) {
         if (defenseflag == 1) {
-            damage = 120 - data[0][2];
+            damage = 120 - you.defense;
             Sleep(500);
             printf("あなたに%dのダメージ\n", damage);
             Sleep(500);
@@ -117,6 +118,12 @@ void CSV2Array(const char* filename, int data[max][4]) {
 
 
     }
+    you.hp = data[0][0];
+    you.attack = data[0][1];
+    you.defense = data[0][2];
+    monster.hp = data[1][0];
+    monster.attack = data[1][1];
+    monster.defense = data[1][2];
 
 }
 void getGurrentDirectory(char* currentDirectory) {
@@ -124,8 +131,8 @@ void getGurrentDirectory(char* currentDirectory) {
 }
 
 void hp() {
-    yourhp = data[0][0];
-    enemyhp = data[1][0];
+    yourhp = you.hp;
+    enemyhp = monster.hp;
 }
 
 void getdata() {
