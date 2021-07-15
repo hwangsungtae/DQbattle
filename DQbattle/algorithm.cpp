@@ -2,6 +2,7 @@
 #include "setting.h"
 int damage;
 int defenseflag=0;
+int num_yakusou = 5;
 
 void move(int i) {
     if (i == 1) {
@@ -19,14 +20,23 @@ void move(int i) {
 
     }
     else {
+        Sleep(500);
+        printf("薬草を使った\n");
+        num_yakusou--;
+        Sleep(500);
+        printf("あなたは100回復\n");
+        Sleep(500);
+        printf("残り薬草は%d個\n", num_yakusou);
+        yourhp += 100;
+        Sleep(500);
 
     }
 }
 
 void enemy() {
     int moveflag;
-    moveflag = (rand() % 3 + 1);
-    if (moveflag == 1) {
+    moveflag = (rand() % 5 + 1);
+    if (moveflag == 1|| moveflag == 2 || moveflag == 3 ) {
 
         if (defenseflag == 1) {
             damage = data[1][1] - data[0][2];
@@ -41,12 +51,12 @@ void enemy() {
             Sleep(500);
             printf("あなたに%dのダメージ\n", damage);
             Sleep(500);
-            yourhp -= data[0][1];
+            yourhp -= damage;
         }
     }
-    else if (moveflag == 2) {
+    else if (moveflag == 4) {
         if (defenseflag == 1) {
-            damage = data[1][1] - data[0][2];
+            damage = 120 - data[0][2];
             Sleep(500);
             printf("あなたに%dのダメージ\n", damage);
             Sleep(500);
@@ -54,29 +64,19 @@ void enemy() {
             defenseflag = 0;
         }
         else {
-            damage = data[1][1];
+            damage = 120;
+            printf("あいては炎を吐いた");
             Sleep(500);
             printf("あなたに%dのダメージ\n", damage);
             Sleep(500);
-            yourhp -= data[0][1];
+            yourhp -= damage;
         }
     }
     else {
-        if (defenseflag == 1) {
-            damage = data[1][1] - data[0][2];
-            Sleep(500);
-            printf("あなたに%dのダメージ\n", damage);
-            Sleep(500);
-            yourhp -= damage;
-            defenseflag = 0;
-        }
-        else {
-            damage = data[1][1];
-            Sleep(500);
-            printf("あなたに%dのダメージ\n", damage);
-            Sleep(500);
-            yourhp -= data[0][1];
-        }
+        Sleep(500);
+        printf("あいてはボーっとしている\n");
+        Sleep(500);
+
     }
 }
 

@@ -16,6 +16,8 @@ int main()
 	hp();
 
 	while (1) {
+		printf("yourHP:%d\n", yourhp);
+		printf("enemyHP:%d\n", enemyhp);
 		int i;
 		printf("行動を数字で入力してください\n");
 		printf("attack:1\ndeffense:2\nheal:3\n");
