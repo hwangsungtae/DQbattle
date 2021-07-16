@@ -24,7 +24,10 @@ int main()
 		int i;
 		printf("行動を数字で入力してください\n");
 		printf("attack:1\ndeffense:2\nheal:3\n");
-		fscanf_s(stdin, "%d", &i);
+		if (fscanf_s(stdin, "%d", &i) == 0) {
+			printf("数字ではありません。エラーです。");
+			break;
+		}
 		if (i > 3) {
 			printf("表示されている数字を入力してください\n");
 			continue;
