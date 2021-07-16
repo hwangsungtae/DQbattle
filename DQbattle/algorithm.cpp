@@ -7,7 +7,7 @@ errno_t error;
 FILE* fp;
 struct c_data you, monster;
 
-void move(int i) {
+void move(int i) {      //プレイヤーの行動
     if (i == 1) {
         damage = you.attack;
         Sleep(500);
@@ -36,7 +36,7 @@ void move(int i) {
     }
 }
 
-void enemy() {
+void enemy() {          //敵の行動
     int moveflag;
     moveflag = (rand() % 5 + 1);
     if (moveflag == 1|| moveflag == 2 || moveflag == 3 ) {
@@ -83,7 +83,7 @@ void enemy() {
     }
 }
 
-void CSV2Array(const char* filename, int data[max][4]) {
+void CSV2Array(const char* filename, int data[max][4]) {        //CSVのデータを構造体に格納
 
     
     char s[BUFFSIZE];
@@ -128,16 +128,16 @@ void CSV2Array(const char* filename, int data[max][4]) {
     monster.defense = data[1][2];
 
 }
-void getGurrentDirectory(char* currentDirectory) {
+void getGurrentDirectory(char* currentDirectory) {      //パス取得
     GetCurrentDirectory(CHARBUFF, currentDirectory);
 }
 
-void hp() {
+void hp() {         //HPの設定
     yourhp = you.hp;
     enemyhp = monster.hp;
 }
 
-void getdata() {
+void getdata() {            //iniファイルからデータ取り出し
     char currentDirectory[CHARBUFF];
     getGurrentDirectory(currentDirectory);
     char section[CHARBUFF];
@@ -157,7 +157,7 @@ void getdata() {
     CSV2Array(keyValue, data);
 }
 
-void outputfile() {
+void outputfile() {             //CSVファイル出力
     error = fopen_s(&fp, "playturn.csv", "w");
     if (error != 0)
         fprintf_s(stderr, "failed to open");
